@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="a2017_1.pooa.iff.br.localizacao.MainActivity">
+    tools:context="a2017_1.pooa.iff.br.localizacao.activity.MainActivity">
 
     <TextView
         android:id="@+id/textView"
