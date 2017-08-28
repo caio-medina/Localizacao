@@ -3,6 +3,8 @@ package a2017_1.pooa.iff.br.localizacao.activity;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,8 +21,10 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 
 import a2017_1.pooa.iff.br.localizacao.R;
 import a2017_1.pooa.iff.br.localizacao.util.PermissionUtils;
@@ -167,5 +171,17 @@ public class UltimaLocalizacaoActivity extends AppCompatActivity implements Goog
         tvPresicao.setText("Accuracy: " + location.getAccuracy());
         tvHora.setText("Speed: " + DateFormat.getTimeInstance().format(new Date()));
 
+    }
+
+    public Address getEndereco(double latitude, double longitude) throws IOException {
+
+        Geocoder geocoder;
+        Address endereco= null;
+        List<Address> enderecos;
+        geocoder = new Geocoder(getApplicationContext());
+        enderecos = geocoder.getFromLocation(latitude,longitude,1);
+        if(enderecos.size()> 0)
+            endereco = enderecos.get(0);
+        return endereco;
     }
 }
