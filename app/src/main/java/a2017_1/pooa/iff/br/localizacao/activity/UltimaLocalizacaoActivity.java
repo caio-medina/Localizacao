@@ -19,6 +19,9 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 import a2017_1.pooa.iff.br.localizacao.R;
 import a2017_1.pooa.iff.br.localizacao.util.PermissionUtils;
 
@@ -145,10 +148,24 @@ public class UltimaLocalizacaoActivity extends AppCompatActivity implements Goog
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.i("LOG", "UpdateLocationActivity.onConnectionFailed(" + connectionResult + ")");
+
     }
 
     @Override
     public void onLocationChanged(Location location) {
+        Log.i("LOG", "onLocationChanged(" +location.toString() + ")");
+        Double latPoint = location.getLatitude();
+        Double lngPoint = location.getLongitude();
+        String resultAddress = "";
+
+
+        tvLatitude.setText("Latitude: "+latPoint.toString());
+        tvLongitude.setText("Longitude: "+lngPoint.toString());
+        tvAltitude.setText("Altitude: " + location.getAltitude());
+        tvVelocidade.setText("Velocidade: " + location.getSpeed());
+        tvProvedor.setText("Provider: " + location.getProvider());
+        tvPresicao.setText("Accuracy: " + location.getAccuracy());
+        tvHora.setText("Speed: " + DateFormat.getTimeInstance().format(new Date()));
 
     }
 }
